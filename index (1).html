@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lauren Curry — Communications & Digital Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #FAF7F4;
+  --bg2:       #F3EDE7;
+  --ink:       #1C1917;
+  --ink-mid:   #57534E;
+  --ink-soft:  #A8A29E;
+  --rose:      #C9848A;
+  --rose-pale: #F0DFE0;
+  --blush:     #E8D5D0;
+  --border:    #E7E0D9;
+  --border-strong: #C9BFB8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 5rem;
+  background: rgba(250,247,244,0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.75rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--ink); border-bottom-color: var(--rose); }
+
+/* ── SHARED LAYOUT ── */
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 5rem;
+}
+
+.pt-nav { padding-top: 8rem; }
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 500;
+  margin-bottom: 2.5rem;
+}
+
+/* ── HOME / HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5rem;
+  padding-top: 80px;
+  position: relative;
+}
+
+.hero-name {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(4.5rem, 11vw, 10rem);
+  font-weight: 200;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 2rem;
+}
+
+.hero-name em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+.hero-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  font-weight: 300;
+  color: var(--ink-mid);
+  margin-bottom: 3.5rem;
+  letter-spacing: 0.01em;
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--ink);
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.btn-fill {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.btn-fill:hover {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: white;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 5rem;
+  writing-mode: vertical-rl;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: var(--border-strong);
+}
+
+/* ── FEATURED WORK ── */
+.featured-section {
+  padding: 6rem 5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.featured-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.work-card {
+  background: var(--bg2);
+  padding: 2.25rem 2.25rem 3rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.work-card:hover {
+  background: var(--blush);
+  border-color: var(--blush);
+  transform: translateY(-2px);
+}
+
+.work-card-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 500;
+  margin-bottom: 1.1rem;
+}
+
+.work-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.45rem;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+  color: var(--ink);
+}
+
+.work-card-desc {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.work-card-arrow {
+  position: absolute;
+  bottom: 1.75rem;
+  right: 2rem;
+  font-size: 1.1rem;
+  color: var(--border-strong);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.work-card:hover .work-card-arrow {
+  color: var(--rose);
+  transform: translate(3px, -3px);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 5rem;
+}
+
+/* ── ABOUT ── */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 6rem;
+  align-items: start;
+  padding: 6rem 5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.about-display {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 200;
+  line-height: 1.08;
+  color: var(--ink);
+  margin-bottom: 3rem;
+}
+
+.about-display em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+.skills-stack { margin-top: 0.5rem; }
+
+.skill-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.skill-row:first-child { border-top: 1px solid var(--border); }
+
+.skill-name { color: var(--ink); font-weight: 400; }
+
+.skill-cat {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.about-body p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--ink-mid);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.about-body p.lead {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 200;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 2rem;
+}
+
+/* ── PORTFOLIO PAGE ── */
+.portfolio-wrap {
+  padding: 6rem 5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.portfolio-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.portfolio-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 200;
+  line-height: 1.05;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.portfolio-card {
+  background: var(--bg2);
+  padding: 1.75rem 1.75rem 2.5rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.portfolio-card:hover {
+  background: var(--blush);
+  border-color: var(--blush);
+  transform: translateY(-2px);
+}
+
+.portfolio-card-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 500;
+  margin-bottom: 0.85rem;
+}
+
+.portfolio-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+}
+
+.portfolio-card-desc {
+  font-size: 0.8rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.card-arrow {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.5rem;
+  font-size: 1rem;
+  color: var(--border-strong);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.portfolio-card:hover .card-arrow,
+.work-card:hover .card-arrow {
+  color: var(--rose);
+  transform: translate(3px, -3px);
+}
+
+/* ── PROJECT DETAIL ── */
+.project-wrap {
+  padding: 6rem 5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  cursor: pointer;
+  margin-bottom: 4rem;
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.back-btn:hover { color: var(--rose); }
+
+.proj-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.proj-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 200;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}
+
+.proj-lead {
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  max-width: 580px;
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+.proj-meta {
+  display: flex;
+  gap: 3rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.proj-meta-item label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.3rem;
+}
+
+.proj-meta-item span {
+  font-size: 0.88rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.proj-img-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.proj-body {
+  max-width: 640px;
+}
+
+.proj-body p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--ink-mid);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+/* ── RESUME ── */
+.resume-wrap {
+  padding: 6rem 5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.resume-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.resume-top h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 200;
+  line-height: 1.0;
+}
+
+.resume-block { margin-bottom: 4rem; }
+
+.resume-block-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 500;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.resume-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 2rem;
+  row-gap: 0.2rem;
+  margin-bottom: 2.25rem;
+}
+
+.resume-item h4 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.resume-item .org {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.resume-item .date {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  text-align: right;
+  grid-row: 1;
+  grid-column: 2;
+  padding-top: 2px;
+}
+
+.resume-item ul {
+  grid-column: 1 / -1;
+  margin-top: 0.6rem;
+  padding-left: 1rem;
+}
+
+.resume-item ul li {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  margin-bottom: 0.3rem;
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* ── CONTACT ── */
+.contact-wrap {
+  padding: 6rem 5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 7rem;
+  align-items: start;
+}
+
+.contact-display {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 200;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.contact-display em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+.contact-intro {
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+
+.contact-link-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.88rem;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.contact-link-row:first-of-type { border-top: 1px solid var(--border); }
+.contact-link-row:hover { color: var(--rose); }
+
+.cl-icon {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.contact-link-row:hover .cl-icon {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: white;
+}
+
+.cl-arrow {
+  margin-left: auto;
+  color: var(--border-strong);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.contact-link-row:hover .cl-arrow {
+  color: var(--rose);
+  transform: translate(3px, -3px);
+}
+
+/* Form */
+.cform { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.fgroup { display: flex; flex-direction: column; gap: 0.45rem; }
+
+.fgroup label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.fgroup input,
+.fgroup textarea {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+  resize: none;
+}
+
+.fgroup input:focus,
+.fgroup textarea:focus {
+  border-color: var(--rose);
+  background: white;
+}
+
+.fsubmit {
+  padding: 0.8rem 2rem;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+
+.fsubmit:hover { background: var(--rose); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.75rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.footer-name {
+  font-family: 'Fraunces', serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 840px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .hero, .featured-section, .about-layout, .portfolio-wrap,
+  .project-wrap, .resume-wrap, .contact-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .divider { margin: 0 1.5rem; }
+  .featured-row { grid-template-columns: 1fr; }
+  .about-layout { grid-template-columns: 1fr; gap: 3rem; padding-top: 5rem; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .resume-item { grid-template-columns: 1fr; }
+  .resume-item .date { text-align: left; }
+  footer { padding: 1.5rem; }
+  .hero-scroll-hint { display: none; }
+}
+
+@media (max-width: 540px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo" onclick="showPage('home')">Lauren Curry</span>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')"      data-page="home">Home</a></li>
+    <li><a onclick="showPage('about')"     data-page="about">About</a></li>
+    <li><a onclick="showPage('portfolio')" data-page="portfolio">Work</a></li>
+    <li><a onclick="showPage('resume')"    data-page="resume">Résumé</a></li>
+    <li><a onclick="showPage('contact')"   data-page="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ════════ HOME ════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <h1 class="hero-name">Lauren<br><em>Curry</em></h1>
+    <p class="hero-sub">Communications & Digital Design — writing, designing, and building digital things that connect with people.</p>
+    <div class="hero-actions">
+      <button class="btn btn-fill" onclick="showPage('portfolio')">View my work</button>
+      <button class="btn" onclick="showPage('about')">About me</button>
+      <button class="btn" onclick="showPage('contact')">Get in touch</button>
+    </div>
+    <div class="hero-scroll-hint">Scroll</div>
+  </section>
+
+  <hr class="divider">
+
+  <div class="featured-section">
+    <span class="section-eyebrow">Selected work</span>
+    <div class="featured-row">
+      <div class="work-card" onclick="showProject('ai-ethics')">
+        <div class="work-card-tag">Published · Research & Writing</div>
+        <h2 class="work-card-title">AI Ethics & the Question of Responsibility</h2>
+        <p class="work-card-desc">A published exploration of ethical accountability in artificial intelligence systems — and the humans behind them.</p>
+        <span class="work-card-arrow">↗</span>
+      </div>
+      <div class="work-card" onclick="showProject('smallholder')">
+        <div class="work-card-tag">Published · Research & Writing</div>
+        <h2 class="work-card-title">Farming Futures: Smallholder Agriculture</h2>
+        <p class="work-card-desc">Published research on farming practices that support food security and resilience for smallholder farmers in developing economies.</p>
+        <span class="work-card-arrow">↗</span>
+      </div>
+      <div class="work-card" onclick="showProject('pandora')">
+        <div class="work-card-tag">Research & Cultural Analysis</div>
+        <h2 class="work-card-title">Pandora, Avatar & Digital Mythology</h2>
+        <p class="work-card-desc">Capstone analysis at the intersection of digital media, cultural representation, and the myths we embed in technology.</p>
+        <span class="work-card-arrow">↗</span>
+      </div>
+      <div class="work-card" onclick="showProject('infographic')">
+        <div class="work-card-tag">Visual Design</div>
+        <h2 class="work-card-title">Meatless Diet Infographic</h2>
+        <p class="work-card-desc">Data-driven visual communication piece translating nutritional research into an accessible, well-designed graphic.</p>
+        <span class="work-card-arrow">↗</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════ ABOUT ════════ -->
+<div id="page-about" class="page">
+  <div class="about-layout pt-nav">
+    <div>
+      <span class="section-eyebrow">About</span>
+      <h2 class="about-display">Curious<br>by nature,<br>digital<br>by <em>design.</em></h2>
+      <div class="skills-stack">
+        <div class="skill-row"><span class="skill-name">Canva</span><span class="skill-cat">Design</span></div>
+        <div class="skill-row"><span class="skill-name">Adobe Illustrator</span><span class="skill-cat">Design</span></div>
+        <div class="skill-row"><span class="skill-name">Adobe Photoshop</span><span class="skill-cat">Design</span></div>
+        <div class="skill-row"><span class="skill-name">Figma</span><span class="skill-cat">Design / UX</span></div>
+        <div class="skill-row"><span class="skill-name">WordPress</span><span class="skill-cat">Web</span></div>
+        <div class="skill-row"><span class="skill-name">HTML & CSS</span><span class="skill-cat">Web</span></div>
+        <div class="skill-row"><span class="skill-name">Squarespace</span><span class="skill-cat">Web</span></div>
+        <div class="skill-row"><span class="skill-name">Research & Writing</span><span class="skill-cat">Communications</span></div>
+      </div>
+    </div>
+    <div class="about-body">
+      <p class="lead">I'm a recent University of Guelph graduate with a Bachelor of Arts in Culture and Technology Studies — a program at the intersection of digital methods, critical thinking, and creative practice.</p>
+      <p>I'm drawn to work that lives at the crossroads of communication and design: writing that connects, visuals that clarify, and digital experiences that feel considered. Whether I'm drafting copy, building a layout, or thinking through how a piece of content reaches its audience, I bring the same curiosity and care.</p>
+      <p>My academic background gave me a foundation in understanding how technology shapes culture — and how design and communication shape the way we experience technology in return. I'm now bringing that perspective into professional work, with a focus on communications, digital design, and web content roles.</p>
+      <p>Based in Barrie, Ontario, and open to remote and hybrid opportunities across the Toronto corridor.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PORTFOLIO ════════ -->
+<div id="page-portfolio" class="page">
+  <div class="portfolio-wrap pt-nav">
+    <div class="portfolio-header">
+      <h1 class="portfolio-title">Work</h1>
+      <span class="section-eyebrow" style="margin-bottom:0">5 projects</span>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card" onclick="showProject('ai-ethics')">
+        <div class="portfolio-card-tag">Published · Research & Writing</div>
+        <h3 class="portfolio-card-title">AI Ethics & the Question of Responsibility</h3>
+        <p class="portfolio-card-desc">Published research on ethical accountability in AI systems.</p>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="portfolio-card" onclick="showProject('smallholder')">
+        <div class="portfolio-card-tag">Published · Research & Writing</div>
+        <h3 class="portfolio-card-title">Farming Futures: Smallholder Agriculture</h3>
+        <p class="portfolio-card-desc">Published work on agricultural practices supporting food security in developing countries.</p>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="portfolio-card" onclick="showProject('pandora')">
+        <div class="portfolio-card-tag">Research & Cultural Analysis</div>
+        <h3 class="portfolio-card-title">Pandora, Avatar & Digital Mythology</h3>
+        <p class="portfolio-card-desc">Capstone project exploring digital media, cultural representation, and embedded myth.</p>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="portfolio-card" onclick="showProject('infographic')">
+        <div class="portfolio-card-tag">Visual Design</div>
+        <h3 class="portfolio-card-title">Meatless Diet Infographic</h3>
+        <p class="portfolio-card-desc">Visual communication design translating nutritional research into a clear, accessible graphic.</p>
+        <span class="card-arrow">↗</span>
+      </div>
+      <div class="portfolio-card" onclick="showProject('charlotte')">
+        <div class="portfolio-card-tag">Digital Storytelling</div>
+        <h3 class="portfolio-card-title">Charlotte Winder: Digital Story</h3>
+        <p class="portfolio-card-desc">A digital narrative piece bringing personal history to life through digital storytelling methods.</p>
+        <span class="card-arrow">↗</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PROJECT DETAIL ════════ -->
+<div id="page-project" class="page">
+  <div class="project-wrap pt-nav">
+    <button class="back-btn" onclick="showPage('portfolio')">← Back to work</button>
+    <div id="project-content"></div>
+  </div>
+</div>
+
+<!-- ════════ RESUME ════════ -->
+<div id="page-resume" class="page">
+  <div class="resume-wrap pt-nav">
+    <div class="resume-top">
+      <h1>Résumé</h1>
+      <a class="btn btn-fill" href="#">↓ Download PDF</a>
+    </div>
+
+    <div class="resume-block">
+      <div class="resume-block-label">Education</div>
+      <div class="resume-item">
+        <h4>Bachelor of Arts — Culture and Technology Studies</h4>
+        <div class="date">2022 – 2026</div>
+        <div class="org">University of Guelph</div>
+        <ul>
+          <li>Major and Minor in Culture and Technology Studies</li>
+          <li>Coursework spanning digital design, web development, cultural analysis, research methods, and digital storytelling</li>
+          <li>Two published works on AI ethics and agricultural development in developing economies</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="resume-block">
+      <div class="resume-block-label">Experience</div>
+      <div class="resume-item">
+        <h4>Add your experience here</h4>
+        <div class="date">Date – Date</div>
+        <div class="org">Organization name</div>
+        <ul>
+          <li>Replace with your actual experience, co-op placements, volunteer roles, or freelance projects</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="resume-block">
+      <div class="resume-block-label">Publications</div>
+      <div class="resume-item">
+        <h4>AI Ethics & the Question of Responsibility</h4>
+        <div class="date">2025</div>
+        <div class="org">Add publication name here</div>
+      </div>
+      <div class="resume-item">
+        <h4>Farming Futures: Smallholder Agriculture in Developing Economies</h4>
+        <div class="date">2025</div>
+        <div class="org">Add publication name here</div>
+      </div>
+    </div>
+
+    <div class="resume-block">
+      <div class="resume-block-label">Skills</div>
+      <div class="chips">
+        <span class="chip">Canva</span>
+        <span class="chip">Adobe Illustrator</span>
+        <span class="chip">Adobe Photoshop</span>
+        <span class="chip">Figma</span>
+        <span class="chip">WordPress</span>
+        <span class="chip">Squarespace</span>
+        <span class="chip">HTML & CSS</span>
+        <span class="chip">Research & Writing</span>
+        <span class="chip">Digital Storytelling</span>
+        <span class="chip">Content Strategy</span>
+        <span class="chip">Visual Communication</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ CONTACT ════════ -->
+<div id="page-contact" class="page">
+  <div class="contact-wrap pt-nav">
+    <span class="section-eyebrow">Contact</span>
+    <div class="contact-layout">
+      <div>
+        <h2 class="contact-display">Let's work<br><em>together.</em></h2>
+        <p class="contact-intro">I'm currently open to full-time roles in communications, digital design, and web content. Based in Barrie, Ontario — available for remote and hybrid work across the Toronto corridor.</p>
+        <a class="contact-link-row" href="mailto:your@email.com">
+          <div class="cl-icon">✉</div>
+          your@email.com
+          <span class="cl-arrow">↗</span>
+        </a>
+        <a class="contact-link-row" href="https://linkedin.com/in/yourprofile" target="_blank">
+          <div class="cl-icon" style="font-size:0.7rem;font-weight:500;letter-spacing:0.02em">in</div>
+          LinkedIn
+          <span class="cl-arrow">↗</span>
+        </a>
+      </div>
+      <div class="cform">
+        <div class="fgroup">
+          <label>Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="fgroup">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="fgroup">
+          <label>Message</label>
+          <textarea rows="6" placeholder="Tell me about the role or project..."></textarea>
+        </div>
+        <button class="fsubmit">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Lauren Curry</span>
+  <span>Communications & Digital Design</span>
+  <span>Barrie, Ontario · © 2026</span>
+</footer>
+
+<script>
+const projects = {
+  'ai-ethics': {
+    tag: 'Published · Research & Writing',
+    title: 'AI Ethics & the Question of Responsibility',
+    desc: 'A published examination of ethical accountability in artificial intelligence — who bears responsibility when systems cause harm, and how do we design for it?',
+    role: 'Author', type: 'Published Research', year: '2025', skills: 'Research, Academic Writing, Critical Analysis',
+    body: `<p>Add your full project description here. Describe what the piece argues, why the question matters, and where it was published.</p><p>You can add a link to the published piece or embed a PDF preview here.</p>`
+  },
+  'smallholder': {
+    tag: 'Published · Research & Writing',
+    title: 'Farming Futures: Smallholder Agriculture in Developing Economies',
+    desc: 'Published research examining agricultural practices that improve food security and economic resilience for smallholder farmers in developing countries.',
+    role: 'Author', type: 'Published Research', year: '2025', skills: 'Research, Academic Writing, Policy Analysis',
+    body: `<p>Add your full project description here. Describe the farming practice you researched, the argument you made, and where it was published.</p><p>Link to the published piece or embed a preview here.</p>`
+  },
+  'pandora': {
+    tag: 'Research & Cultural Analysis',
+    title: 'Pandora, Avatar & Digital Mythology',
+    desc: 'A capstone cultural analysis examining how the world of Avatar constructs digital myth, and what that reveals about our relationship to technology, nature, and narrative.',
+    role: 'Researcher & Writer', type: 'Capstone Project', year: '2025', skills: 'Cultural Analysis, Research, Academic Writing',
+    body: `<p>Add your project description here — framed as the cultural argument you were making, not as a course assignment.</p><p>What did you find? What does Avatar reveal about how we imagine technology and ecology?</p>`
+  },
+  'infographic': {
+    tag: 'Visual Design',
+    title: 'Meatless Diet Infographic',
+    desc: 'A visual communication piece translating nutritional research on plant-based diets into a clear, accessible graphic designed for a general audience.',
+    role: 'Designer & Researcher', type: 'Visual Design', year: '2024', skills: 'Canva, Visual Communication, Data Design',
+    body: `<p>Add your design description here. What was the brief? What design decisions did you make and why?</p>`
+  },
+  'charlotte': {
+    tag: 'Digital Storytelling',
+    title: 'Charlotte Winder: Digital Story',
+    desc: 'A digital narrative piece bringing a personal or historical story to life through digital storytelling methods and tools.',
+    role: 'Digital Storyteller', type: 'Digital Storytelling', year: '2024', skills: 'Digital Storytelling, Writing, Multimedia',
+    body: `<p>Add your project description here. Who is Charlotte Winder, what story were you telling, and what tools or methods did you use to tell it?</p>`
+  }
+};
+
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === page);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showProject(id) {
+  const p = projects[id];
+  if (!p) return;
+  document.getElementById('project-content').innerHTML = `
+    <div class="proj-tag">${p.tag}</div>
+    <h1 class="proj-title">${p.title}</h1>
+    <p class="proj-lead">${p.desc}</p>
+    <div class="proj-meta">
+      <div class="proj-meta-item"><label>Role</label><span>${p.role}</span></div>
+      <div class="proj-meta-item"><label>Type</label><span>${p.type}</span></div>
+      <div class="proj-meta-item"><label>Year</label><span>${p.year}</span></div>
+      <div class="proj-meta-item"><label>Skills</label><span>${p.skills}</span></div>
+    </div>
+    <div class="proj-img-placeholder">Add image or preview here</div>
+    <div class="proj-body">${p.body}</div>
+  `;
+  document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active'));
+  document.getElementById('page-project').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
